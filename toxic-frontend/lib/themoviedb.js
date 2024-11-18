@@ -27,3 +27,22 @@ export const fetchPopularTVShows = async () => {
     throw error;
   }
 };
+
+export const fetchTvShow = async (id) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/tv/${id}?api_key=${API_KEY}`,
+      options
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching TV show with id "${id}": ${response.statusText}`
+      );
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(`Failed to fetch TV show with id "${id}":`, error);
+    throw error;
+  }
+};
