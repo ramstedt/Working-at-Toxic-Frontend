@@ -26,7 +26,7 @@ export default function TvShow() {
   }
 
   if (!show) {
-    return <p>Loading...</p>;
+    return <p>Loading</p>;
   }
 
   return (
