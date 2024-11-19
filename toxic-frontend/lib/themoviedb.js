@@ -51,8 +51,27 @@ export const fetchLanguages = async () => {
     if (!response.ok) {
       throw new Error(`Error fetching languages: ${response.statusText}`);
     }
+    const languages = await response.json();
 
-    return await response.json();
+    // Sort with English and Swedish first, for convenience.
+    return languages.sort((a, b) => {
+      const priority = ['English', 'Swedish'];
+
+      const aPriority = priority.indexOf(a.english_name);
+      const bPriority = priority.indexOf(b.english_name);
+
+      // If both languages are in the priority list, sort by their order in the list.
+      if (aPriority !== -1 && bPriority !== -1) {
+        return aPriority - bPriority;
+      }
+
+      // If one language is in the priority list and the other isn't, prioritize the one in the list.
+      if (aPriority !== -1) return -1;
+      if (bPriority !== -1) return 1;
+
+      // If neither language is in the priority list, sort them alphabetically.
+      return a.english_name.localeCompare(b.english_name);
+    });
   } catch (error) {
     console.error('Failed to fetch languages:', error);
     throw new Error('Failed to fetch languages');
