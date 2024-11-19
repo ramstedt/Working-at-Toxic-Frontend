@@ -18,7 +18,7 @@
 .posterPlaceholder {
   background: rgb(36, 40, 107);
   height: 100%;
-  color: white;
+  color: rgb(246, 246, 246);
   font-weight: 700;
   display: flex;
   justify-content: center;
