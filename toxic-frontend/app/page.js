@@ -11,18 +11,7 @@ export default async function Home() {
       <h1>TV Shows Database</h1>
       <SearchBar languages={languages} />
       <h2>Popular TV Shows</h2>
-      {popularShows.results.map((show) => (
-        <div key={show.id}>
-          {console.log(show)}
-          <ShowCard
-            key={show.id}
-            title={show.name}
-            releaseDate={show.first_air_date}
-            img={show.poster_path}
-            rating={show.vote_average}
-          />
-        </div>
-      ))}
+      <ShowCard shows={popularShows.results} />
     </div>
   );
 }

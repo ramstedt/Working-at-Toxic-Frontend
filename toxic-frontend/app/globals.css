@@ -4,6 +4,11 @@ body {
   overflow-x: hidden;
 }
 
+body {
+  margin: 0 3% 0 3%;
+  max-width: 1440px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

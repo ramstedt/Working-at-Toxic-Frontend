@@ -1,6 +1,0 @@
-.showsWrapper {
-  display: grid;
-  gap: 1rem;
-  padding: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}

@@ -1,3 +1,10 @@
+.showsWrapper {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 .showCard {
   position: relative;
   text-align: center;
@@ -8,17 +15,12 @@
   border-radius: 5%;
 }
 
-.modal {
-  position: absolute;
-  top: 92%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.774);
-  color: black;
-  padding: 1rem;
-  border-radius: 2%;
-  z-index: 10;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+.posterPlaceholder {
+  background: rgb(36, 40, 107);
+  height: 100%;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
