@@ -1,10 +1,21 @@
 'use client';
 import { useState } from 'react';
+import { fetchSearchResults } from '@/lib/themoviedb';
+import ShowCard from '../ShowCard/ShowCard';
 
 export default function SearchBar({ languages }) {
   const [title, setTitle] = useState('');
   const [language, setLanguage] = useState('');
+  const [results, setResults] = useState(null);
 
+  const handleSearch = async () => {
+    try {
+      const data = await fetchSearchResults(title, language);
+      setResults(data.results);
+    } catch (error) {
+      console.error('Error during search:', error);
+    }
+  };
   return (
     <div>
       <input
@@ -27,6 +38,17 @@ export default function SearchBar({ languages }) {
         ))}
       </select>
       <button onClick={handleSearch}>Search</button>
+
+      {results && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Search Results</h3>
+          {results.length > 0 ? (
+            <ShowCard shows={results} />
+          ) : (
+            <p>No results found.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

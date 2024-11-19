@@ -77,3 +77,47 @@ export const fetchLanguages = async () => {
     throw new Error('Failed to fetch languages');
   }
 };
+
+function filterByLanguage(data, language) {
+  const filteredResults = data.results.filter(
+    (item) =>
+      item.original_language &&
+      item.original_language.toLowerCase() === language.toLowerCase()
+  );
+
+  return {
+    ...data,
+    results: filteredResults,
+  };
+}
+
+export const fetchSearchResults = async (title, language) => {
+  // search must contain a title and cannot handle language parameter.
+  // discover can handle language parameter but cannot handle title parameter.
+  // solving the problem by only using search if title is present.
+  // if title is not present, use discover which supports language filtering.
+  const url = title
+    ? `${BASE_URL}/search/tv?query=${title}`
+    : `${BASE_URL}/discover/tv?with_original_language=${language}`;
+
+  try {
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      throw new Error(`Error fetching search results: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    // if title AND language is present, filter by language
+    if (title && language) {
+      return filterByLanguage(data, language);
+    }
+
+    // else return data
+    return data;
+  } catch (error) {
+    console.error('Search error:', error);
+    throw error;
+  }
+};
