@@ -1,4 +1,6 @@
 'use client';
+import SearchButton from '../_atoms/SearchButton/SearchButton';
+import styles from './SearchBar.module.css';
 import { useState } from 'react';
 
 export default function SearchBar({ languages }) {
@@ -12,12 +14,14 @@ export default function SearchBar({ languages }) {
         placeholder='Search by title'
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className={styles.searchBox}
       />
       <select
         id='language'
         name='language'
         value={language}
         onChange={(e) => setLanguage(e.target.value)}
+        className={styles.searchBox}
       >
         <option value=''>All languages</option>
         {languages.map((language) => (
@@ -26,7 +30,7 @@ export default function SearchBar({ languages }) {
           </option>
         ))}
       </select>
-      <button onClick={handleSearch}>Search</button>
+      <SearchButton text='Search' />
     </div>
   );
 }
