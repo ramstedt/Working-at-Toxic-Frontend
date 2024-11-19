@@ -4,6 +4,7 @@ import styles from './SearchBar.module.css';
 import { useState } from 'react';
 import { fetchSearchResults } from '@/lib/themoviedb';
 import ShowCard from '../ShowCard/ShowCard';
+import SearchButton from '../_atoms/SearchButton/SearchButton';
 
 export default function SearchBar({ languages }) {
   const [title, setTitle] = useState('');
@@ -41,7 +42,7 @@ export default function SearchBar({ languages }) {
           </option>
         ))}
       </select>
-      <button onClick={handleSearch}>Search</button>
+      <SearchButton onClick={handleSearch} text={Search} />
 
       {results && (
         <div style={{ marginTop: '20px' }}>
