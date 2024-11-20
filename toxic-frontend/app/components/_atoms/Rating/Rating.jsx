@@ -15,8 +15,8 @@ export default function Rating({ isVisible, voteAverage, isModal }) {
         reduction={0}
         className={styles.rating}
         gradient={[
-          { stop: 0.0, color: '#48d721' },
-          { stop: 1, color: '#0b833b' },
+          { stop: 0.0, color: '#a9fb91' },
+          { stop: 1, color: '#05bf30' },
         ]}
         background='#888888'
       />

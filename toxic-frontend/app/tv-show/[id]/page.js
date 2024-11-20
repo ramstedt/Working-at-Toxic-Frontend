@@ -2,6 +2,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { fetchTvShow } from '@/lib/themoviedb';
+import ShowDetailed from '@/app/components/ShowDetailed/ShowDetailed';
 
 export default function TvShow() {
   const { id } = useParams();
@@ -30,9 +31,8 @@ export default function TvShow() {
   }
 
   return (
-    <div>
-      <h1>{show.name}</h1>
-      <p>{show.overview}</p>
-    </div>
+    <>
+      <ShowDetailed show={show} />
+    </>
   );
 }

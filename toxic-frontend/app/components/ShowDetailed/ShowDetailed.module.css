@@ -1,0 +1,39 @@
+.showWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.showDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.showDetails h2 {
+  padding-bottom: 0.5rem;
+}
+
+.showDetails p {
+  padding-bottom: 1rem;
+}
+
+.seasonAirDate {
+  padding-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .showWrapper {
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 3rem;
+  }
+}
