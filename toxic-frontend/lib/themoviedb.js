@@ -77,7 +77,6 @@ export const fetchLanguages = async () => {
     throw new Error('Failed to fetch languages');
   }
 };
-
 function filterByLanguage(data, language) {
   const filteredResults = data.results.filter(
     (item) =>
@@ -88,6 +87,19 @@ function filterByLanguage(data, language) {
   return {
     ...data,
     results: filteredResults,
+  };
+}
+
+function sortByLatestAirDate(data) {
+  const sortedResults = data.results.sort((a, b) => {
+    const dateA = new Date(a.first_air_date || 0);
+    const dateB = new Date(b.first_air_date || 0);
+    return dateB - dateA;
+  });
+
+  return {
+    ...data,
+    results: sortedResults,
   };
 }
 
@@ -109,13 +121,15 @@ export const fetchSearchResults = async (title, language) => {
 
     const data = await response.json();
 
-    // if title AND language is present, filter by language
+    let processedData = data;
+
+    // If title AND language is present, filter by language
     if (title && language) {
-      return filterByLanguage(data, language);
+      processedData = filterByLanguage(data, language);
     }
 
-    // else return data
-    return data;
+    // Sort the results by the latest air date
+    return sortByLatestAirDate(processedData);
   } catch (error) {
     console.error('Search error:', error);
     throw error;
